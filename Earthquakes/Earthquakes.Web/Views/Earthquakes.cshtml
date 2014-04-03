@@ -1,0 +1,64 @@
+﻿@using ServiceStack.Text
+@inherits ServiceStack.Razor.ViewPage<List<ArcGIS.ServiceModel.Common.Feature<ArcGIS.ServiceModel.Common.IGeometry>>>
+<!doctype html>
+<html lang="en-us">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>#eqnz</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="//js.arcgis.com/3.8/js/esri/css/esri.css" />
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+            font-size: 16px;
+        }
+
+        #map {
+            width: 70%;
+            height: 100%;
+            margin: 0;
+            float: left;
+        }
+
+        body {
+            background-color: #FFF;
+            overflow: hidden;
+        }
+
+        #panel {
+            float: right;
+            color: #666;
+            width: 30%;
+        }
+    </style>   
+</head>
+<body>
+    <div id="map"></div>
+    <div id="panel">
+        <h4 style="padding-left: 6px;">Recent NZ Earthquakes</h4>
+        <div style="position: absolute;height: 90%; width: 30%; overflow-y: scroll;">
+        @foreach (var feature in Model)
+        {
+        <text>
+            <div style="padding: 6px;">
+                <a href="javascript:show('@feature.Attributes["publicid"]');"><strong>Magnitude @Math.Round(double.Parse(feature.Attributes["magnitude"].ToString()), 1)</strong></a><br/>
+                <span>@Math.Round(double.Parse(feature.Attributes["depth"].ToString()), 2)km deep at @String.Format("{0:g}", TimeZoneInfo.ConvertTimeFromUtc(DateTime.Parse(feature.Attributes["origintime"].ToString()), TimeZoneInfo.FindSystemTimeZoneById("New Zealand Standard Time")))</span>
+            </div>
+        </text>
+        }
+</div>
+    </div>
+
+    <script type="text/javascript">
+        var data = @Model.AsRawJson();
+        var dojoConfig = { parseOnLoad: true, async: true };
+    </script>
+    <script defer src="//js.arcgis.com/3.8compact"></script>
+    <script defer src="~/Scripts/app.js"></script>
+</body>
+</html>
+

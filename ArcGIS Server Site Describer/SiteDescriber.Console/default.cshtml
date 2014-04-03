@@ -1,0 +1,28 @@
+﻿<!doctype html>
+<html lang="en-us">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>ArcGIS Server Site Descriptor</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="Content/bootstrap-responsive.min.css" />
+</head>
+<body style="padding: 10px">
+    <h2>ArcGIS Server Site Describer</h2>
+    <p>Enter the URL of an ArcGIS Server site and optionally some user credentials if you want to locate secure resources.</p>  
+    <p>Url should include scheme, host, port and arcgis instance e.g. http://services.arcgisonline.com/arcgis</p>  
+    <form action="/describe" method="POST">
+        <div class="controls">
+           <input name="Url" class="input-xxlarge" type="text" placeholder="ArcGIS Server Url" required>
+        </div>
+        <div class="controls controls-row">           
+            <input name="Username" type="text" class="input-large" placeholder="Username">
+            <input name="Password" type="password" class="input-large" placeholder="Password">
+        </div>
+        <button type="submit" class="btn">GO</button>
+    </form>
+    <script defer type="text/javascript" src="Scripts/jquery-1.9.1.min.js"></script>
+    <script defer type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+</body>
+</html>

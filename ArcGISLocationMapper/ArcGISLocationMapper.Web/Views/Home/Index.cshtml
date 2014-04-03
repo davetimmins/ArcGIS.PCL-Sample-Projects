@@ -1,0 +1,55 @@
+﻿@model ArcGIS.ServiceModel.Common.Feature<ArcGIS.ServiceModel.Common.Point>
+
+<!doctype html>
+<html lang="en-us">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Map</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="//js.arcgis.com/3.8/js/esri/css/esri.css" />
+    <style>
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #FFF;
+            overflow: hidden;
+            font-family: "Trebuchet MS";
+        }
+    </style>
+</head>
+<body class="claro">
+    <div id="map"></div>
+    <script src="//js.arcgis.com/3.8compact/"></script>
+    <script type="text/javascript">
+       
+        require(["esri/map", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol", "dojo/_base/json", "dojo/domReady!"],
+          function (Map, MarkerSymbol, LineSymbol, dojo) {
+              var map = new Map("map", { basemap: "gray" });
+              map.on("load", function (evt) {
+                  var r = Math.floor(Math.random() * 256);
+                  var g = Math.floor(Math.random() * 256);
+                  var b = Math.floor(Math.random() * 256);
+                  var symbol = new MarkerSymbol(MarkerSymbol.STYLE_CIRCLE, 16,
+                    new LineSymbol(LineSymbol.STYLE_SOLID,
+                    new dojo.Color([r, g, b, 1]), 4),
+                    new dojo.Color([r, g, b, 0.7]));
+
+                  var json = dojo.fromJson('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model))');
+                  var graphic = new esri.Graphic(json);
+                  graphic.setSymbol(symbol);
+                  map.graphics.add(graphic);
+                  map.centerAndZoom(graphic.geometry, 14);
+              });
+          }
+        );
+        
+    </script>
+</body>
+</html>
+

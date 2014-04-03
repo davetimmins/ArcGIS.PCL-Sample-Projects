@@ -1,0 +1,121 @@
+﻿@using ServiceStack.Text
+@inherits ServiceStack.Razor.ViewPage<List<ArcGIS.ServiceModel.Common.Feature<ArcGIS.ServiceModel.Common.IGeometry>>>
+<!doctype html>
+<html lang="en-us">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>GeoJSON to ArcGIS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-Frame-Options" content="deny">
+    <link rel="stylesheet" href="//js.arcgis.com/3.8/js/esri/css/esri.css" />
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+            font-size: 16px;
+        }
+
+        #panel {
+            height: 10%;
+            padding: 6px;
+        }
+
+        #map {
+            height: 85%;
+        }
+
+        body {
+            background-color: #FFF;
+            overflow: hidden;
+        }
+    </style>
+    <style id="antiClickjack">
+        body {
+            display: none !important;
+        }
+    </style>
+    <script type="text/javascript">
+        if (self === top) {
+            var antiClickjack = document.getElementById("antiClickjack");
+            antiClickjack.parentNode.removeChild(antiClickjack);
+        } else {
+            top.location = self.location;
+        }
+    </script>
+    <script src="//js.arcgis.com/3.8compact/"></script>
+</head>
+<body>
+    <div id="panel">
+        <span><strong>Enter the url of a GeoJSON FeatureCollection resource (Point, Polyline, Polygon and MultiPolygon tested)</strong></span><br />
+        <i>e.g. http://geonet.org.nz/quakes/services/felt.json , https://raw.github.com/smartchicago/chicago-atlas/master/db/import/zipcodes.geojson</i><br />
+        <input id="uri" type="text" style="width: 70%" />
+        <button onclick="javascript:go();">GO</button>
+        <a href="Default" style="float: right">ArcGIS -> GeoJSON</a>
+    </div>
+    <div id="map"></div>
+    <script type="text/javascript">
+        var dojoConfig = { parseOnLoad: true, async: true };
+        var map, markerSymbol, lineSymbol, fillSymbol;
+    </script>
+    <script type="text/javascript">
+        require(["esri/map", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol", "esri/symbols/SimpleLineSymbol", "esri/geometry", "dojo/domReady!"],
+             function (Map, MarkerSymbol, LineSymbol, FillSymbol) {
+                 map = new Map("map", {
+                     basemap: "gray",
+                     showAttribution: true
+                 });
+
+                 markerSymbol = new MarkerSymbol();
+                 lineSymbol = new LineSymbol();
+                 fillSymbol = new FillSymbol();
+             });
+
+        function go() {
+            require(["dojo/_base/xhr"],
+                function (xhr) {
+
+                    xhr.get({
+                        url: "/arcgis?uri=" + document.getElementById('uri').value,
+                        handleAs: "json",
+                        headers: { "Content-Type": "application/json" },
+                        load: function (data) {
+
+                            document.getElementById('uri').value = '';
+                            map.graphics.clear();
+                            var extent = null;
+
+                            for (var i = 0; i < data.length; i++) {
+
+                                var graphic = new esri.Graphic(data[i]);
+                                var type = graphic.geometry.type;
+
+                                if (type === 'point' || type === 'multipoint') {
+                                    graphic.setSymbol(markerSymbol);
+
+                                    if (extent == null)
+                                        extent = new esri.geometry.Extent(graphic.geometry.x - 1, graphic.geometry.y - 1, graphic.geometry.x + 1, graphic.geometry.y + 1);
+                                    else
+                                        extent = extent.union(new esri.geometry.Extent(graphic.geometry.x - 1, graphic.geometry.y - 1, graphic.geometry.x + 1, graphic.geometry.y + 1));
+                                }
+                                else if (type === 'line' || type === 'polyline') {
+                                    graphic.setSymbol(lineSymbol);
+                                }
+                                else {
+                                    graphic.setSymbol(fillSymbol);
+                                }
+
+                                map.graphics.add(graphic);
+                            }
+                            if (extent == null) extent = esri.graphicsExtent(map.graphics.graphics);
+                            map.setExtent(extent, true);
+                        }
+                    });
+                });
+        }
+    </script>
+</body>
+</html>
+

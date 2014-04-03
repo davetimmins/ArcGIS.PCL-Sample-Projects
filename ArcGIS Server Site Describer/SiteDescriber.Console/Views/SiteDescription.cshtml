@@ -1,0 +1,24 @@
+﻿@inherits ServiceStack.Razor.ViewPage<SiteDescriber.ServiceInterface.ModelForServer>
+<!doctype html>
+<html lang="en-us">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>ArcGIS Server Site Descriptor</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="../Content/bootstrap-responsive.min.css" />
+</head>
+<body style="padding: 10px">
+    <h3>Resources for @Model.Url</h3>
+    <h4>ArcGIS Server Version @Model.Version</h4>
+    <div>
+       @foreach (var endpoint in Model.Resources)
+        {
+           <p><a href="@String.Concat(Model.Url, endpoint.RelativeUrl)" target="_blank">@endpoint.RelativeUrl.Replace("rest/services/", "")</a></p>
+        }
+    </div>
+    <script defer type="text/javascript" src="../Scripts/jquery-1.9.1.min.js"></script>
+    <script defer type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
+</body>
+</html>

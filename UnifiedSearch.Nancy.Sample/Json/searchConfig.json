@@ -1,0 +1,22 @@
+﻿{
+	querySearches:[
+	{
+		endpoint:"http://s3.demos.eaglegis.co.nz/ArcGIS/rest/services/LINZ/crs/MapServer/1",
+		expression:"STREET_ADDRESS LIKE '{0}%'",
+		type:"esriGeometryPoint"
+	},
+	{
+		endpoint:"http://sampleserver6.arcgisonline.com/arcgis/rest/services/WorldTimeZones/MapServer/1",
+		expression:"ZONE = {0}", 
+		type:"esriGeometryPolygon",
+		regex:"(-?[0-9]|[0-9]\\d|13)$"
+	}],
+	findSearches:[	
+	{
+		endpoint:"http://sampleserver6.arcgisonline.com/arcgis/rest/services/SampleWorldCities/MapServer",
+		searchFields:["CITY_NAME","CONTINENT"],
+		layerIds:[0,1]
+	}],
+	returnFields:["CITY_NAME","CONTINENT","STREET_ADDRESS","ZONE"],
+	outputWkid:102100
+}

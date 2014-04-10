@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Geocoder Widget</title>
+    <link rel="stylesheet" href="//js.arcgis.com/3.9/js/esri/css/esri.css">
+    <style>
+      html, body, #map {
+        height:100%;
+        width:100%;
+        margin:0;
+        padding:0;
+      }
+      body {
+        background-color:#FFF;
+        overflow:hidden;
+        font-family:"Trebuchet MS";
+      }
+      #search {
+        display: block;
+        position: absolute;
+        z-index: 2;
+        top: 20px;
+        left: 75px;
+      } 
+    </style>
+
+    <script src="//js.arcgis.com/3.9/"></script>
+    <script>
+        var map;
+        var geocoder;
+        var locatorUrl = "http://fakeator.azurewebsites.net/geocodeserver";
+        require([
+          "esri/map", "esri/dijit/Geocoder", "dojo/domReady!"
+        ], function (
+          Map, Geocoder
+        ) {
+            map = new Map("map", {
+                basemap: "topo",
+                center: [-117.19, 34.05], // lon, lat
+                zoom: 13
+            });
+
+            var myGeocoders = [{
+                url: locatorUrl,
+                name: "Eagle Unified Search",
+                singleLineFieldName: "SingleLine"
+            }];
+            geocoder = new Geocoder({
+                map: map,
+                autoComplete: true,
+                arcgisGeocoder: false,
+                geocoders: myGeocoders,
+                value: "100 willis",
+                searchDelay: 10
+            }, "search");
+            geocoder.startup();
+        });
+    </script>
+  </head>
+  <body>
+    <div id="search"></div>
+    <div id="map"></div>
+  </body>
+</html> 

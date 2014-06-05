@@ -38,13 +38,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ArcGIS.ServiceModel">
+    <Reference Include="ArcGIS.ServiceModel, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\ArcGIS.PCL.4.0.0-beta\lib\net45\ArcGIS.ServiceModel.dll</HintPath>
     </Reference>
-    <Reference Include="ArcGIS.ServiceModel.NET">
+    <Reference Include="ArcGIS.ServiceModel.NET, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\ArcGIS.PCL.4.0.0-beta\lib\net45\ArcGIS.ServiceModel.NET.dll</HintPath>
     </Reference>
-    <Reference Include="ArcGIS.ServiceModel.Serializers.JsonDotNet">
+    <Reference Include="ArcGIS.ServiceModel.Serializers.JsonDotNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\ArcGIS.PCL.JsonDotNetSerializer.1.0.0\lib\ArcGIS.ServiceModel.Serializers.JsonDotNet.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core">

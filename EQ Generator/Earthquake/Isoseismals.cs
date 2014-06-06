@@ -204,19 +204,12 @@ namespace Earthquake.Logic
                 }
             }
 
-            var gateway = new ArcGISGateway();
-            var op = new SimplifyGeometry<Polygon>("/Utilities/Geometry/GeometryServer".AsEndpoint())
-            {
-                SpatialReference = new SpatialReference { Wkid = 2193 },
-                Geometries = new GeometryCollection<Polygon>()
-            };
-            op.Geometries.Geometries = polygonCollection.Select(f => f.Geometry).ToList();
-
-            var simplified = gateway.Simplify<Polygon>(op).Geometries;
+            var gateway = new ArcGISOnlineGateway();            
+            var simplified = gateway.Simplify<Polygon>(polygonCollection, new SpatialReference { Wkid = 2193 }).Result;
 
             var result = polygonCollection;
             for (int i = 0; i < result.Count; i++)
-                result[i].Geometry = simplified[i];
+                result[i].Geometry = simplified[i].Geometry;
 
             var response = new List<Feature<Polygon>>();
             foreach (var feature in result)

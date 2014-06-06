@@ -63,6 +63,8 @@ namespace Earthquakes.Web
             JsConfig.IncludeTypeInfo = false;
             JsConfig.ConvertObjectTypesIntoStringDictionary = true;
             JsConfig.IncludeNullValues = false;
+
+            ArcGIS.ServiceModel.Serializers.ServiceStackSerializer.Init();
         }
     }    
 }

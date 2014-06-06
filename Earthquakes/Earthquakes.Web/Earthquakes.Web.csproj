@@ -38,9 +38,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ArcGIS.ServiceModel, Version=2.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ArcGIS.ServiceModel, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\ArcGIS.PCL.2.2.3\lib\ArcGIS.ServiceModel.dll</HintPath>
+      <HintPath>..\..\packages\ArcGIS.PCL.4.0.0-beta\lib\net45\ArcGIS.ServiceModel.dll</HintPath>
+    </Reference>
+    <Reference Include="ArcGIS.ServiceModel.NET">
+      <HintPath>..\..\packages\ArcGIS.PCL.4.0.0-beta\lib\net45\ArcGIS.ServiceModel.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="ArcGIS.ServiceModel.Serializers.ServiceStackV3, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\ArcGIS.PCL.ServiceStackV3Serializer.1.0.0\lib\ArcGIS.ServiceModel.Serializers.ServiceStackV3.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -78,18 +85,19 @@
     <Reference Include="ServiceStack.ServiceInterface">
       <HintPath>..\packages\ServiceStack.3.9.55\lib\net35\ServiceStack.ServiceInterface.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\packages\ServiceStack.Text.3.9.55\lib\net35\ServiceStack.Text.dll</HintPath>
+    <Reference Include="ServiceStack.Text, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Extensions, Version=2.2.19.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.22.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.19\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.22\lib\net45\System.Net.Http.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http.Primitives, Version=4.2.19.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.22.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.19\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.22\lib\net45\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Web.DynamicData" />

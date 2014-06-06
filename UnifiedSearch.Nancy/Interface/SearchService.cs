@@ -33,10 +33,10 @@ namespace UnifiedSearch.Nancy.Interface
                 return Response.AsText(content).WithContentType("application/json");
             };
 
-            Get[@"/GeocodeServer/findAddressCandidates", true] = async (x, ct) =>
-            {
-                return await EsriSearch();
-            };
+Get[@"/GeocodeServer/findAddressCandidates", true] = async (x, ct) =>
+{
+    return await EsriSearch();
+};
 
             Get[@"/GeocodeServer/suggest", true] = async (x, ct) =>
             {

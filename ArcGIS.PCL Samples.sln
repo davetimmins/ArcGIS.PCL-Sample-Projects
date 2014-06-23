@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteDescriber.ServiceInterface", "ArcGIS Server Site Describer\SiteDescriber.ServiceInterface\SiteDescriber.ServiceInterface.csproj", "{7CB5A755-64B7-4A4A-8C4D-C1D49E2E8413}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteDescriber.Console", "ArcGIS Server Site Describer\SiteDescriber.Console\SiteDescriber.Console.csproj", "{6732B4D2-4D8A-4C0C-BBE1-A91ED6D7147A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteDescriber.Web", "ArcGIS Server Site Describer\SiteDescriber.Web\SiteDescriber.Web.csproj", "{13628AB6-7076-4480-BC29-A4CEF60C4753}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Site Describer", "Site Describer", "{B5ADA791-A39D-4D3A-91E5-E95A25218198}"
@@ -46,15 +44,6 @@ Global
 		{7CB5A755-64B7-4A4A-8C4D-C1D49E2E8413}.run|Any CPU.ActiveCfg = Release|Any CPU
 		{7CB5A755-64B7-4A4A-8C4D-C1D49E2E8413}.run|Any CPU.Build.0 = Release|Any CPU
 		{7CB5A755-64B7-4A4A-8C4D-C1D49E2E8413}.run|x86.ActiveCfg = Release|Any CPU
-		{6732B4D2-4D8A-4C0C-BBE1-A91ED6D7147A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6732B4D2-4D8A-4C0C-BBE1-A91ED6D7147A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6732B4D2-4D8A-4C0C-BBE1-A91ED6D7147A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6732B4D2-4D8A-4C0C-BBE1-A91ED6D7147A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6732B4D2-4D8A-4C0C-BBE1-A91ED6D7147A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6732B4D2-4D8A-4C0C-BBE1-A91ED6D7147A}.Release|x86.ActiveCfg = Release|Any CPU
-		{6732B4D2-4D8A-4C0C-BBE1-A91ED6D7147A}.run|Any CPU.ActiveCfg = Release|Any CPU
-		{6732B4D2-4D8A-4C0C-BBE1-A91ED6D7147A}.run|Any CPU.Build.0 = Release|Any CPU
-		{6732B4D2-4D8A-4C0C-BBE1-A91ED6D7147A}.run|x86.ActiveCfg = Release|Any CPU
 		{13628AB6-7076-4480-BC29-A4CEF60C4753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{13628AB6-7076-4480-BC29-A4CEF60C4753}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13628AB6-7076-4480-BC29-A4CEF60C4753}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -135,7 +124,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{6732B4D2-4D8A-4C0C-BBE1-A91ED6D7147A} = {B5ADA791-A39D-4D3A-91E5-E95A25218198}
 		{13628AB6-7076-4480-BC29-A4CEF60C4753} = {B5ADA791-A39D-4D3A-91E5-E95A25218198}
 		{7CB5A755-64B7-4A4A-8C4D-C1D49E2E8413} = {B5ADA791-A39D-4D3A-91E5-E95A25218198}
 		{BEE8CCD9-AFB5-486D-9B8C-C1866B54BC56} = {8A73DDD4-0CCE-4B88-9718-B575B9BD5740}

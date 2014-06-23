@@ -6,25 +6,36 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="ArcGIS Server" />
-    <link rel="stylesheet" href="Content/bootstrap.min.css" />
-    <link rel="stylesheet" href="Content/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="Content/gh-fork-ribbon.min.css" />
 </head>
 <body style="padding: 10px">
     <h2>ArcGIS Server Site Describer</h2>
-    <p>Enter the URL of an ArcGIS Server site and optionally some user credentials if you want to locate secure resources.</p>  
-    <p>Url should include scheme, host, port and arcgis instance name e.g. http://services.arcgisonline.com/arcgis</p>  
-    <form action="/describe" method="POST">
-        <div class="controls">
-           <input name="Url" class="input-xxlarge" type="text" placeholder="ArcGIS Server Url" required>
+    <p>Enter the URL of an ArcGIS Server site and optionally some user credentials if you want to locate secure resources.</p>
+    <p>Url should include scheme, host, port and arcgis instance name e.g. http://services.arcgisonline.com/arcgis</p>
+    <form role="form" action="@(new SiteDescriber.ServiceInterface.AgServer().ToPostUrl())" method="POST">
+        <div class="form-group">
+            <label class="sr-only" for="Url">ArcGIS Server Url</label>
+            <input name="Url" class="form-control" type="text" placeholder="ArcGIS Server Url" required>
         </div>
-        <div class="controls controls-row">           
-            <input name="Username" type="text" class="input-large" placeholder="Username">
-            <input name="Password" type="password" class="input-large" placeholder="Password">
+        <div class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="Username">Username</label>
+                <input name="Username" type="text" class="form-control " placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="Password">Password</label>
+                <input name="Password" type="password" class="form-control" placeholder="Password">
+            </div>
+            <button type="submit" class="btn">GO</button>
         </div>
-        <button type="submit" class="btn">GO</button>
     </form>
-    <p>To download a standalone version for running locally <a href="http://sdrv.ms/11bGjcg">click here</a>.</p>
-    <script defer type="text/javascript" src="Scripts/jquery-1.9.1.min.js"></script>
-    <script defer type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+    <div class="github-fork-ribbon-wrapper right">
+        <div class="github-fork-ribbon">
+            <a href="https://github.com/davetimmins/ArcGIS.PCL-Sample-Projects/tree/master/ArcGIS%20Server%20Site%20Describer">Fork me on GitHub</a>
+        </div>
+    </div>
+    <script defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script defer type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </body>
 </html>

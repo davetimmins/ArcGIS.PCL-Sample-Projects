@@ -1,10 +1,11 @@
 ﻿using Funq;
+using ServiceStack;
 using ServiceStack.Razor;
-using ServiceStack.WebHost.Endpoints;
 using SiteDescriber.ServiceInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 namespace SiteDescriber.Web
@@ -17,9 +18,16 @@ namespace SiteDescriber.Web
         {
             Plugins.Add(new RazorFormat());
 
-            SetConfig(new EndpointHostConfig
+            Plugins.RemoveAll(x => x is RequestInfoFeature);
+            Plugins.RemoveAll(x => x is MetadataFeature);
+            Plugins.RemoveAll(x => x is PredefinedRoutesFeature);
+                        
+            CustomErrorHttpHandlers.Clear();
+            CustomErrorHttpHandlers.Add(HttpStatusCode.InternalServerError, new RazorHandler("/error"));
+
+            SetConfig(new HostConfig
             {
-                GlobalHtmlErrorHttpHandler = new RazorHandler("/error")
+                GlobalResponseHeaders = new Dictionary<String, String>()
             });
         }
     }

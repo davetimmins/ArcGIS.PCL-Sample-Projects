@@ -1,7 +1,6 @@
 ﻿using ArcGIS.ServiceModel;
 using ArcGIS.ServiceModel.Operation;
-using ServiceStack.ServiceHost;
-using ServiceStack.ServiceInterface;
+using ServiceStack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +14,16 @@ namespace SiteDescriber.ServiceInterface
     [DefaultView("SiteDescription")]
     public class GatewayService : Service
     {
-        public object Any(AgServer request)
+        ServiceStackSerializer _serializer = new ServiceStackSerializer();
+
+        public async Task<ModelForServer> Any(AgServer request)
         {
             if (String.IsNullOrWhiteSpace(request.Url)) return null;
 
-            var gateway = new ArcGISGateway(request.Url.AsRootUrl(), request.Username, request.Password);
+            var gateway = new SecureArcGISServerGateway(request.Url.AsRootUrl(), request.Username, request.Password, _serializer);
             var result = new ModelForServer { Url = gateway.RootUrl };
-            var siteDescription = gateway.DescribeSite().Result;
-            result.Version = siteDescription.Version;
-            result.Resources = siteDescription.Resources;
+            var siteDescription = await gateway.DescribeSite();
+            result.SiteDescription = siteDescription;
             return result;
         }
     }
@@ -36,16 +36,10 @@ namespace SiteDescriber.ServiceInterface
         public String Password { get; set; }
     }
 
-    public class ArcGISGateway : PortalGateway
-    {
-        public ArcGISGateway(String root, String username, String password)
-            : base(root, new ServiceStackSerializer())
-        { }
-    }
-
-    public class ModelForServer : SiteDescription
+    public class ModelForServer
     {
         public String Url { get; set; }
+        public SiteDescription SiteDescription { get; set; }
     }
 
     public class ServiceStackSerializer : ISerializer
